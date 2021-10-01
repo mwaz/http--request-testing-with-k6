@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/mwaz/http-testing-with-k6.svg?style=svg)](https://circleci.com/gh/mwaz/http-testing-with-k6)
+[![CircleCI](https://circleci.com/gh/mwaz/http-request-testing-with-k6.svg?style=svg)](https://circleci.com/gh/mwaz/http-request-testing-with-k6)
 
 <p align="center"><img src="https://avatars3.githubusercontent.com/u/59034516"></p>
 
