@@ -1,13 +1,20 @@
 import http from 'k6/http';
 import { check, group } from 'k6';
+import { developmentConfig } from '../environmentConfig.js';
 
-export let options = {
-    vus: 1,
-};
+export const options = {
+    scenarios: {
+      example_scenario: {
+        env: developmentConfig(),
+        executor: 'shared-iterations',
+        vus: 1
+      }
+    }
+  };
 
 export default function () {
-    group('API uptime check', () => {
-        const response = http.get('https://todo-app-barkend.herokuapp.com/todos/');
+    group('API uptime check - development', () => {
+        const response = http.get(`${__ENV.BASE_URL}`);
         check(response, {
             "status code should be 200": res => res.status === 200,
         });
@@ -15,8 +22,8 @@ export default function () {
 
     let todoID;
     group('Create a Todo', () => {
-        const response = http.post('https://todo-app-barkend.herokuapp.com/todos/', 
-        {"task": "write k6 tests"}
+        const response = http.post(`${__ENV.BASE_URL}`, 
+        {task: "write k6 tests"}
         );
         todoID = response.json()._id;
         check(response, {
@@ -28,7 +35,7 @@ export default function () {
     })
 
      group('get a todo item', () => {
-        const response = http.get(`https://todo-app-barkend.herokuapp.com/todos/${todoID}`
+        const response = http.get(`${__ENV.BASE_URL}${todoID}`
         );
         check(response, {
             "status code should be 200": res => res.status === 200,
@@ -44,7 +51,7 @@ export default function () {
     })
 
     group('delete all Todos', () => {
-        let response = http.del(`https://todo-app-barkend.herokuapp.com/todos/`
+        let response = http.del(`${__ENV.BASE_URL}`
         );
 
         check(response, {
