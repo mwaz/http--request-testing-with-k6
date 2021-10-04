@@ -2,6 +2,26 @@
 
 <p align="center"><img src="https://avatars3.githubusercontent.com/u/59034516"></p>
 
+
+## Running tests
+### Running ENV specific Tests: 
+ To run environment specific tests, we will use the following commands.
+
+1. For DEV environment tests: 
+```bash
+k6 run scenario-tests/todos-development-tests.js
+```
+
+2. For STAGING environment tests: 
+```bash
+k6 run scenario-tests/todos-staging-tests.js
+```
+
+### Running Normal API Tests:
+
+```bash
+k6 run todos-testing.js
+```
 ## Details
 
 This repo is built following a tutorial published on CircleCI blog under the CircleCI Guest Writer Program.
